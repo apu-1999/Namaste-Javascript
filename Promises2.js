@@ -8,13 +8,22 @@
 
 // //Using promises
 
-// const promise = createOrder(cart);
+ const promise = createOrder(cart);
 
-// //{data:orderID}
+ //{data:orderID}
 
-// promise.then(function (orderID) {
-//     proceedToPayment();
-// })
+ //Promise Chaining to solve the issue of callback hell
+ promise.then(function (orderID) {
+    return proceedToPayment(orderID);
+ })
+ .then(function (paymentInfo) {
+   return showOrderSummary(paymentInfo);
+ })
+ .then(function (paymentInfo) {
+   return updateWalletBalance(paymentInfo);
+ })
+
+
 
 const GITHUB_API = "https://api.github.com/users/apu-1999";
 
